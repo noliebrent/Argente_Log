@@ -6,21 +6,29 @@
 
   - name: Install Updates
     apt:
-     upgrade: dist
-     update_cache: yes
+      upgrade: dist
+      update_cache: yes
     changed_when: false
     when: ansible_distribution == "Ubuntu"
 
- - name: Create a directory
-   file:
-     path: /home/argente/logs
-     state: directory
-     mode: 0755
+  - name: Create a directory
+    file:
+      path: /home/argente/Argente_Log/logs
+      state: directory
+      mode: 0755
 
-  - name: Collecting Log Files
+  - name: Collecting Log Files to Main Server
     fetch:
       src: /var/log/syslog
-      dest: /home/argente/logs
+      dest: /home/argente/Argente_Log/logs
 
   - name: Collecting Journalctl Files
     shell: journalctl > /home/argente/logs/journal.log
+    
+  - name: Copy Journalctl log file to Main Server
+    fetch:
+      src: /home/argente/logs/journal.log
+      dest: /home/argente/Argente_Log/logs
+    
+
+    
