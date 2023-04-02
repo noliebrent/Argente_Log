@@ -13,14 +13,14 @@
 
  - name: Create a directory
    file:
-     path: /home/argente/Argete_Log/log
+     path: /home/argente/logs
      state: directory
      mode: 0755
 
   - name: Collecting Log Files
     fetch:
       src: /var/log/syslog
-      dest: /home/argente/Argete_Log/log
+      dest: /home/argente/logs
 
   - name: Collecting Journalctl Files
-    shell: journalctl > /home/argente/Argete_Log/log/journal.log
+    shell: journalctl > /home/argente/logs/journal.log
