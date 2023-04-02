@@ -24,11 +24,9 @@
 
   - name: Collecting Journalctl Files
     shell: journalctl > /home/argente/logs/journal.log
-    
+
   - name: Copy Journalctl log file to Main Server
     fetch:
       src: /home/argente/logs/journal.log
       dest: /home/argente/Argente_Log/logs
-    
 
-    
